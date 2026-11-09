@@ -1,0 +1,18 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad=0.15, nodesep=0.27, ranksep=0.38];
+node [shape=box, style="rounded,filled", fillcolor="#eef4fa", color="#617b91", fontname="DejaVu Sans", fontsize=13, margin="0.13,0.08"];
+edge [fontname="DejaVu Sans", fontsize=11, color="#365166"];
+n0 [label="Updater"];
+n1 [label="Пакет и манифест"];
+n2 [label="OfflineBuffer"];
+n3 [label="ServiceDesk API"];
+n4 [label="Operations"];
+n5 [label="Резервная копия и SAT"];
+n6 [label="SecurityDemo"];
+n7 [label="Проверки защиты"];
+n0 -> n1 [label="SemVer + SHA-256"];
+n2 -> n3 [label="HTTP"];
+n4 -> n3 [label="проверки SAT"];
+n4 -> n5 [label="ZIP / Markdown"];
+n6 -> n7 [label="RBAC, X.509, DPAPI, BCrypt"];
+}

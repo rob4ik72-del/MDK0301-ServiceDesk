@@ -1,0 +1,7 @@
+PASS: POST v1 returns 201
+PASS: old client deserializes v1
+PASS: v1 field set is unchanged
+PASS: v2 adds default priority
+PASS: missing ticket returns 404
+PASS: v2 rejects invalid priority
+PASS: duplicate event keeps the same ticket ID

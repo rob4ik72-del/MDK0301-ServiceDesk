@@ -1,0 +1,2 @@
+PASS: original row preserved and v1 insert works after Expand
+PASS: Contract removes the legacy column and keeps both rows

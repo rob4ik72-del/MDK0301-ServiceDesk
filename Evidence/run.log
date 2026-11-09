@@ -1,0 +1,13 @@
+PASS Сохранение заявки без сети: exit=2
+PASS Обратная совместимость API: exit=0
+PASS Отправка после восстановления соединения: exit=0
+PASS Миграция SQLite: exit=0
+PASS Стендовые проверки SAT: exit=0
+PASS Формирование манифеста: exit=0
+PASS Установка версии 1.1.0: exit=0
+PASS Повторный запуск без переустановки: exit=0
+PASS Манифест для версии 1.2.0: exit=0
+PASS Отклонение изменённого пакета: exit=1
+PASS Проверки защиты: exit=0
+PASS Резервное копирование: exit=0
+Completed 12 command scenarios; expected exit codes and outputs verified.

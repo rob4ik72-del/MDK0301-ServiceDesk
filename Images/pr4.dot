@@ -1,0 +1,14 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad=0.15, nodesep=0.27, ranksep=0.38];
+node [shape=box, style="rounded,filled", fillcolor="#eef4fa", color="#617b91", fontname="DejaVu Sans", fontsize=13, margin="0.13,0.08"];
+edge [fontname="DejaVu Sans", fontsize=11, color="#365166"];
+n0 [label="Старый клиент"];
+n1 [label="/api/v1/tickets"];
+n2 [label="TicketStore"];
+n3 [label="/api/v2/tickets"];
+n4 [label="Новый клиент"];
+n0 -> n1 [label="запрос"];
+n1 -> n2 [label="общие записи"];
+n4 -> n3 [label="запрос"];
+n3 -> n2 [label="общие записи"];
+}

@@ -1,0 +1,5 @@
+PASS: BCrypt: valid password accepted, wrong one rejected
+PASS: RBAC: allow and deny cases
+PASS: X.509: valid chain and hostname accepted
+PASS: X.509: wrong hostname and expired certificate rejected
+SKIP: DPAPI requires Windows

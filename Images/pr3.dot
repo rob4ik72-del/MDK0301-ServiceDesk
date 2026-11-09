@@ -1,0 +1,14 @@
+digraph G {
+graph [rankdir=LR, bgcolor="white", pad=0.15, nodesep=0.27, ranksep=0.38];
+node [shape=box, style="rounded,filled", fillcolor="#eef4fa", color="#617b91", fontname="DejaVu Sans", fontsize=13, margin="0.13,0.08"];
+edge [fontname="DejaVu Sans", fontsize=11, color="#365166"];
+n0 [label="Отказ старого клиента"];
+n1 [label="Хронология и логи"];
+n2 [label="Корневая причина"];
+n3 [label="Разделить Expand и Contract"];
+n4 [label="Тест v1 перед релизом"];
+n0 -> n1 [label=""];
+n1 -> n2 [label=""];
+n2 -> n3 [label=""];
+n3 -> n4 [label=""];
+}

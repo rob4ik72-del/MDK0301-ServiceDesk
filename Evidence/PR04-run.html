@@ -1,0 +1,11 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><title>ПР 04 — запуск</title>
+<style>body{margin:32px;font:18px Arial;color:#132a40;background:#f4f7fb}
+h1{font-size:30px} h2{font-size:19px;margin:14px 0 5px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:16px monospace;background:white;border-left:4px solid #2b6ea5;padding:10px;margin:0}</style>
+<h1>Служба заявок · ПР 04</h1><p>Вывод проверочного запуска C#</p><h2>Обратная совместимость API</h2><pre>PASS: POST v1 returns 201
+PASS: old client deserializes v1
+PASS: v1 field set is unchanged
+PASS: v2 adds default priority
+PASS: missing ticket returns 404
+PASS: v2 rejects invalid priority
+PASS: duplicate event keeps the same ticket ID</pre></html>

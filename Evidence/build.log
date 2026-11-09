@@ -1,0 +1,17 @@
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  Restored /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/Verification/Verification.csproj (in 108 ms).
+  6 of 7 projects are up-to-date for restore.
+  ApiCompatibilityTests -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/ApiCompatibilityTests/bin/Release/net8.0/ApiCompatibilityTests.dll
+  OfflineBuffer -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/OfflineBuffer/bin/Release/net8.0/OfflineBuffer.dll
+  SecurityDemo -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/SecurityDemo/bin/Release/net8.0/SecurityDemo.dll
+  ServiceDeskApi -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/ServiceDeskApi/bin/Release/net8.0/ServiceDeskApi.dll
+  Updater -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/Updater/bin/Release/net8.0/Updater.dll
+  Operations -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/Operations/bin/Release/net8.0/Operations.dll
+  Verification -> /workspace/scratch/c7aac5bac8ae/output/MDK0301_Checked/Code/Verification/bin/Release/net8.0/Verification.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:18.45
