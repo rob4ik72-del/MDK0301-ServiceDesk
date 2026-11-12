@@ -1,3 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../ServiceDeskApi/ServiceDeskApi.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../ApiCompatibilityTests/ApiCompatibilityTests.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../Operations/Operations.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../CalsExchange/CalsExchange.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../OfflineBuffer/OfflineBuffer.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../SecurityDemo/SecurityDemo.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="../Updater/Updater.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
 </Project>
