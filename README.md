@@ -5,15 +5,15 @@
 
 ## Запуск
 
-Нужен .NET 8 SDK. Из корня на Windows запустите `Verify.cmd`.
+Откройте ServiceDesk.sln в Visual Studio 2022 с .NET 8. Назначьте Verification запускаемым проектом, выберите профиль ПР 4, 5, 6, 7 или 8 и нажмите Ctrl+F5. Вывод идёт в настоящую консоль. См. Docs/VisualStudio.md. Для отдельного общего прогона есть Verify.cmd.
 Команды для любого поддерживаемого окружения:
 
 ```sh
 dotnet build ServiceDesk.sln -c Release
-dotnet run --project Code/Verification -c Release --no-build -- . RunResults
+dotnet run --project Code/Verification -c Release --no-build --no-launch-profile -- . RunResults
 ```
 
-Проверка сама запускает API на свободном локальном порту, выполняет 12 сценариев,
+Проверка сама запускает API на свободном локальном порту, выполняет 13 сценариев,
 проверяет коды завершения и вывод, затем останавливает сервер.
 В RunResults появятся журналы, HTML с фактическим выводом, SAT.md и ZIP с SHA-256.
 DPAPI проверяется только на Windows. Тест X.509 использует временный учебный CA;
@@ -26,7 +26,7 @@ DPAPI проверяется только на Windows. Тест X.509 испо�
 | ПР 3 | Post-Mortem и расчёты в отчёте, входной пример в Code/sample-data |
 | ПР 4 | Code/ServiceDeskApi и Code/ApiCompatibilityTests; Run_PR04_API.cmd |
 | ПР 5 | Code/Operations, команда migration; SQL в Code/sample-data |
-| ПР 6 | Модель данных и примеры JSON/XML в отчёте |
+| ПР 6 | Code/CalsExchange/Program.cs: обмен JSON/XML, SSOT, электронный состав |
 | ПР 7 | Code/Operations, команда sat; оболочка Code/Scripts/sat-report.ps1 |
 | ПР 8 | Code/Updater, Code/OfflineBuffer, Code/SecurityDemo, Code/Operations |
 

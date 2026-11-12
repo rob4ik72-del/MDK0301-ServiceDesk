@@ -11,7 +11,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'
       - run: dotnet build ServiceDesk.sln -c Release
-      - run: dotnet run --project Code/Verification -c Release --no-build -- . RunResults
+      - run: dotnet run --project Code/Verification -c Release --no-build --no-launch-profile -- . RunResults
       - uses: actions/upload-artifact@v4
         if: always()
         with:

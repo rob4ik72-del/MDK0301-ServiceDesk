@@ -68,6 +68,7 @@ static async Task<int> Sat(string address, string output)
         catch (Exception e) when (e is HttpRequestException or TaskCanceledException or JsonException or KeyNotFoundException or InvalidOperationException)
         { checks.Add((route, false, e.GetType().Name)); }
     }
+    foreach (var x in checks) Console.WriteLine($"{(x.Passed ? "PASS" : "FAIL")}: GET {x.Scenario} — {x.Detail}");
     var passed = checks.Count(x => x.Passed);
     var lines = new List<string> { "# Протокол SAT — стенд", "", $"Дата: {DateTimeOffset.UtcNow:yyyy-MM-dd HH:mm:ss} UTC", "",
         "| Сценарий | Результат | Ответ |", "| --- | --- | --- |" };
@@ -90,10 +91,12 @@ static int Migration(string directory, string database)
     Exec("INSERT INTO tickets (title,status) VALUES ('Old client ticket','Open')");
     if (Read("SELECT COUNT(*) FROM tickets WHERE priority=3") != 2) throw new InvalidOperationException("Expand failed");
     Console.WriteLine("PASS: original row preserved and v1 insert works after Expand");
+    Console.WriteLine("After Expand: 2 rows, priority=3; INSERT v1 works.");
     Exec(File.ReadAllText(Path.Combine(directory, "migrate_contract.sql")));
     if (Read("SELECT COUNT(*) FROM tickets WHERE priority=3") != 2 ||
         Read("SELECT COUNT(*) FROM pragma_table_info('tickets') WHERE name='legacy_category'") != 0)
         throw new InvalidOperationException("Contract failed");
     Console.WriteLine("PASS: Contract removes the legacy column and keeps both rows");
+    Console.WriteLine("After Contract: 2 rows; legacy_category absent.");
     return 0;
 }

@@ -5,8 +5,13 @@ using System.Net.Sockets;
 using System.Security.Cryptography;
 using System.Text.Json;
 
-var root = Path.GetFullPath(args.FirstOrDefault() ?? ".");
-var output = Path.GetFullPath(args.ElementAtOrDefault(1) ?? Path.Combine(root, "RunResults"));
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+var profile = args.Length >= 2 && args[0] == "--pr" ? args[1].PadLeft(2, '0') : null;
+if (profile is not null && profile is not ("04" or "05" or "06" or "07" or "08"))
+    throw new ArgumentException("Выберите профиль ПР 4–8.");
+var root = FindRoot(profile is null ? args.FirstOrDefault() : null);
+var configuration = new DirectoryInfo(AppContext.BaseDirectory.TrimEnd(Path.DirectorySeparatorChar)).Parent!.Name;
+var output = Path.GetFullPath((profile is null ? args.ElementAtOrDefault(1) : null) ?? Path.Combine(root, "RunResults"));
 Directory.CreateDirectory(output);
 var staging = Path.Combine(Path.GetTempPath(), "ServiceDesk-" + Guid.NewGuid().ToString("N"));
 Directory.CreateDirectory(staging);
@@ -45,6 +50,7 @@ try
         "migration", Path.Combine(root, "Code", "sample-data"), Path.Combine(staging, "migration.db"));
     await Run("07", "Стендовые проверки SAT", "Operations", 0, "4/4 PASS",
         "sat", address, Path.Combine(output, "SAT.md"));
+    await Run("06", "Обмен CALS JSON/XML и состав изделия", "CalsExchange", 0, "CALS: 5/5 PASS", Path.Combine(staging, "cals"));
     var pack = Path.Combine(staging, "package.txt");
     var manifest = Path.Combine(staging, "manifest.json");
     var target = Path.Combine(staging, "installed.txt");
@@ -93,7 +99,7 @@ finally
 
 Process Start(string project, string[] command)
 {
-    var dll = Path.Combine(root, "Code", project, "bin", "Release", "net8.0", project + ".dll");
+    var dll = Path.Combine(root, "Code", project, "bin", configuration, "net8.0", project + ".dll");
     var start = new ProcessStartInfo(Environment.GetEnvironmentVariable("DOTNET_HOST_PATH") ?? "dotnet")
     { WorkingDirectory = staging, RedirectStandardOutput = true, RedirectStandardError = true, UseShellExecute = false };
     start.ArgumentList.Add(dll);
@@ -114,7 +120,11 @@ async Task Run(string number, string label, string project, int exit, string req
         throw new Exception($"{label}: exit={p.ExitCode}, expected={exit}\n{log}");
     if (!groups.TryGetValue(number, out var reports)) groups.Add(number, reports = []);
     reports.Add((label, log));
-    Console.WriteLine($"PASS {label}: exit={p.ExitCode}");
+    if (profile is null || profile == number)
+    {
+        Console.WriteLine($"\nПР {number}: {label}\n{log}");
+        Console.WriteLine($"PASS {label}: exit={p.ExitCode}");
+    }
 }
 static string H(string s) => WebUtility.HtmlEncode(s);
 static int GetFreePort()
@@ -123,4 +133,18 @@ static int GetFreePort()
     listener.Start();
     try { return ((IPEndPoint)listener.LocalEndpoint).Port; }
     finally { listener.Stop(); }
+}
+
+static string FindRoot(string? supplied)
+{
+    if (supplied is not null)
+    {
+        var path = Path.GetFullPath(supplied);
+        if (File.Exists(Path.Combine(path, "ServiceDesk.sln"))) return path;
+        throw new DirectoryNotFoundException("Не найден ServiceDesk.sln: " + path);
+    }
+    foreach (var start in new[] { Environment.CurrentDirectory, AppContext.BaseDirectory })
+        for (var dir = new DirectoryInfo(start); dir is not null; dir = dir.Parent)
+            if (File.Exists(Path.Combine(dir.FullName, "ServiceDesk.sln"))) return dir.FullName;
+    throw new DirectoryNotFoundException("Откройте решение ServiceDesk.sln.");
 }
