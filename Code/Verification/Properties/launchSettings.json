@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "ПР 4": {
+      "commandName": "Project",
+      "commandLine": "--pr 04"
+    },
+    "ПР 5": {
+      "commandName": "Project",
+      "commandLine": "--pr 05"
+    },
+    "ПР 6": {
+      "commandName": "Project",
+      "commandLine": "--pr 06"
+    },
+    "ПР 7": {
+      "commandName": "Project",
+      "commandLine": "--pr 07"
+    },
+    "ПР 8": {
+      "commandName": "Project",
+      "commandLine": "--pr 08"
+    }
+  }
+}
